@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Blind test - Torii Games</title>
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Une collection de jeux en ligne en rapport avec les animes : blind test, devine tête, pixel guess...">
+    <meta name="description" content="Une collection de jeux en ligne en rapport avec les animes : blind test, devine tête, pixel guess...">
+    <meta name="twitter:title" content="Torii Games – Jeux pour fans d'animes">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Autour+One&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="index.html#" style="font-family: 'Autour One', serif;"><i class="fas fa-torii-gate"></i>&nbsp;Torii Games</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html#">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html#jeux">Jeux</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page blog-post">
+        <section id="loading" class="clean-block clean-form dark" style="display: none;">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Blind test des génériques</h2>
+                    <p>Écouter une musique et trouver de quel anime elle vient. Plutôt simple, non ?</p>
+                </div>
+            </div>
+            <div class="text-center text-secondary">
+                <div class="spinner-border" role="status"><span class="visually-hidden">Chargement</span></div>
+            </div>
+        </section>
+        <section id="setup" class="clean-block clean-form dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Blind test des génériques</h2>
+                    <p>Écouter une musique et trouver de quel anime elle vient. Plutôt simple, non ?</p>
+                </div>
+                <form action="javascript:void(0);" onsubmit="setup();">
+                    <div class="mb-3"><label class="form-label" for="mode">Mode de jeu</label><select class="form-select" id="mode">
+                            <option value="popularite" selected="">Les plus populaires</option>
+                            <option value="tendance">Tendances</option>
+                        </select><span style="font-size: 13px;">Les tendances sont actualisées chaque jour.</span></div>
+                    <div class="mb-3"><label class="form-label" for="diversite">Diversité</label><input class="form-range form-control" type="range" id="diversite" min="30" max="300" step="30" value="90">
+                        <div class="d-flex justify-content-between"><span style="font-size: 13px;"><i class="fas fa-chevron-left"></i>&nbsp;Plus connus</span><span style="font-size: 13px;">Moins connus&nbsp;<i class="fas fa-chevron-right"></i></span></div>
+                    </div>
+                    <div class="mb-3" style="display: none;"><label class="form-label" for="vitesse">Vitesse</label><select class="form-select" id="vitesse" disabled="">
+                            <option value="court">Extrait court au hasard</option>
+                            <option value="moyen">Moitié du générique</option>
+                            <option value="entier" selected="">Générique entier</option>
+                        </select></div>
+                    <div class="mb-3"><label class="form-label" for="reponse">Mode de réponse</label><select class="form-select" id="reponse">
+                            <option value="choix" selected="">Choix multiples</option>
+                            <option value="ecrite">Réponse écrite (hardcore)</option>
+                        </select><span style="font-size: 13px;">Réponse écrite : uniquement le titre original et en entier.</span></div>
+                    <div class="mb-3"><button class="btn btn-success" type="submit">Jouer</button><button class="btn btn-secondary float-end" type="button" onclick="randomSetup();">Partie au hasard</button></div>
+                </form>
+            </div>
+        </section>
+        <section id="jeu" class="clean-block clean-post dark" style="display: none;">
+            <div class="container">
+                <div class="block-content">
+                    <div class="alert alert-success" role="alert" id="alertMessage" style="display: none;"><span><i class="fas fa-info-circle"></i>&nbsp;Si la musique n'arrive pas après plus d'une dizaine de secondes, <a class="alert-link" href="javascript:void(0);" onclick="newRound()">cliquez ici</a>.<br></span></div><div id="videoWrapper">
+    <iframe id="video" class="post-image embed-responsive" src="" frameborder="0" allow="autoplay"></iframe>
+</div>
+                    <div id="solution" class="post-body" style="display: none; padding-top: 50px;">
+                        <h3>Quel est cet anime ?</h3>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-4 col-lg-3"><img id="solutionImage" class="img-fluid mt-2" src="assets/img/shingeki_no_kyojin_2nd_season_3939.jpg"></div>
+                            <div class="col">
+                                <p class="lead">Proposition :&nbsp;<span id="solutionReponse">n/a</span><br>Solution :&nbsp;<span id="solutionAnime" class="text-success">n/a</span></p>
+                                <p>Musique :&nbsp;<span id="solutionMusique">n/a</span><br>Interprète :&nbsp;<span id="solutionInterprete">n/a</span><br>Compositeur :&nbsp;<span id="solutionAuteur">n/a</span></p><a class="btn btn-secondary btn-sm d-table" role="button" id="solutionLien" target="_blank"><i class="fas fa-external-link-alt"></i>Afficher sur Nautiljon.com</a>
+                                <div class="btn-group btn-group-sm d-table my-1" role="group"><button class="btn btn-danger" type="button" onclick="endGame();"><i class="far fa-times-circle"></i>Terminer</button><button class="btn btn-info link-light" type="button" onclick="newRound();"><i class="far fa-arrow-alt-circle-right"></i>Musique suivante<br></button></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="final" class="post-body" style="display: none;">
+                        <h3>Fin du blind test !</h3>
+                        <p class="lead" id="finalParagraphe">Score :&nbsp;<span id="finalScore">?</span>&nbsp;/&nbsp;<span id="finalRounds">?</span></p><a class="btn btn-info link-light" role="button" href=""><i class="fas fa-gamepad"></i>Rejouer</a>
+                    </div>
+                    <div id="reponseEcrite" class="post-body">
+                        <h3>Quel est cet anime ?</h3>
+                        <form onsubmit="valider(document.getElementById(&quot;reponseEcriteInput&quot;).value)" action="javascript:void(0);">
+                            <div class="input-group"><input class="form-control" type="text" id="reponseEcriteInput" placeholder="Titre original"><button class="btn btn-success" type="submit">OK</button></div>
+                        </form>
+                        <p class="text-muted" style="margin-top: 5px;">Plus le titre est long, plus les erreurs sont tolérées.<br>Les espaces, accents, et symboles ne sont pas comptés.</p>
+                    </div>
+                    <div id="reponseChoix" class="post-body">
+                        <h3>Quel est cet anime ?</h3>
+                        <form action="javascript:void(0);"><button class="btn btn-info link-light" id="choix0" type="button" style="width: 100%;margin-top: 5px;margin-bottom: 5px;" onclick="valider(this.innerHTML)"></button><button class="btn btn-info link-light" id="choix1" type="button" style="width: 100%;margin-top: 5px;margin-bottom: 5px;" onclick="valider(this.innerHTML)"></button><button class="btn btn-info link-light" id="choix2" type="button" style="width: 100%;margin-top: 5px;margin-bottom: 5px;" onclick="valider(this.innerHTML)"></button><button class="btn btn-info link-light" id="choix3" type="button" style="width: 100%;margin-top: 5px;margin-bottom: 5px;" onclick="valider(this.innerHTML)"></button></form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer mt-auto" style="padding: 0px;">
+        <div class="copy-right_text">
+            <div class="container-fluid">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">©&nbsp;<script>document.write(new Date().getFullYear());</script>&nbsp;<a href="https://twitter.com/edgarcdrn" target="_blank">Martii</a> | Données récupérées sur&nbsp;<a href="https://www.nautiljon.com" target="_blank" title="Tous droits réservés à Nautiljon.com">Nautiljon.com</a><br></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/blindtest.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
