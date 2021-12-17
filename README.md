@@ -12,18 +12,18 @@ Je créé ces jeux de manière à ce qu'ils soient le plus personnalisable possi
 - [ ] Pendu (0%)
 ## FAQ
 
-#### Est-ce que c'est gratuit ?
+#### *Est-ce que c'est gratuit ?*
 Oui, tout est entièrement gratuit !  
 Si vous voulez supporter mon travail, vous pouvez me faire un don sur [PayPal](https://paypal.me/edgarcaudron).
 
-#### Ai-je besoin de m'inscrire pour jouer ?
+#### *Ai-je besoin de m'inscrire pour jouer ?*
 Non.
 
-#### Comment ça fonctionne ? (version simple)
+#### *Comment ça fonctionne ? (version simple)*
 Le jeu va chercher les données sur le site de Nautiljon (sur différentes pages selon les jeux).  
 Ensuite, on fait ce qu'on veux avec ces données : les faire deviner, les afficher...
 
-#### Comment ça fonctionne ? (version détaillée)
+#### *Comment ça fonctionne ? (version détaillée)*
 
 Le site s'appuie sur deux scripts PHP très simples :
 - L'un est chargé de récupérer le code HTML de l'URL qu'on lui envoie (`file_get_contents(URL)`).
@@ -31,13 +31,13 @@ Le site s'appuie sur deux scripts PHP très simples :
 
 Tout le reste se passe en JavaScript. Les jeux font des requètes AJAX vers les scripts PHP pour récupérer les informations nécessaires (titres, vidéos, infos, images...) et les résultats sont manipulés en fonction des jeux.
 
-#### Un jeu ne fonctionne plus
+#### *Un jeu ne fonctionne plus*
 Deux raisons possibles :
 - Nautiljon a fait des changements dans son interface
 - Mon serveur est indisponible
 Dans les deux cas, contactez-moi et j'essaierais de corriger ça au plus vite !
 
-#### Is an English version planned?
+#### *Is an English version planned?*
 Not in a near future. I'll need to find the time to change the whole website so that it accepts translations.  
 Once it'll be done, anyone will be able to submit their translations.
 
@@ -47,4 +47,10 @@ Quelque chose ne fonctionne plus ? Vous avez une question ?
 Vous pouvez me contacter via le formulaire de contact du site ou via un des moyens ci-dessous.  
 - Twitter : [@edgarcdrn](https://twitter.com/edgarcdrn)  
 - Discord : Martii#4678  
-- Site perso : [martiidev.github.io/website](https://martiidev.github.io/website/)  
+- Site perso : [martiidev.github.io/website](https://martiidev.github.io/website/)
+## Licence
+Je n'ai aucun droit sur les contenus liés aux animes affichés sur ce site.
+L'intégralité des données provient du site [Nautiljon](https://nautiljon.com).  
+
+En revance, l'entièreté du code des jeux (HTML, JavaScript, CSS, PHP) est partagée sous les termes de la licence [Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr).  
+Résumé : vous pouvez modifier et partager mon code tant que vous me créditez (ainsi que Nautiljon si vous utilisez leurs données). Utilisation commerciale interdite.
